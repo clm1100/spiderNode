@@ -1,6 +1,7 @@
 var Crawler = require("crawler");
 var path = require('path');
 var fs = require('fs');
+const makeDir = require('make-dir');
 var book = {} 
 var arr = [];
 function writeFile(path, str, cb) {
@@ -10,19 +11,16 @@ function writeFile(path, str, cb) {
         cb && cb();
     });
 }
-
+var testPath;
 var cpage = new Crawler({
     maxConnections:10,
-    rateLimit: 100,
+    rateLimit: 1000,
     callback:(error,res,done)=>{
         var $ = res.$;
         done()
-        writeFile(path.join(__dirname,`test/${$('title').text()}.txt`),$('title').text(),done)
+        // writeFile(path.join(testPath,`/${$('title').text()}.txt`),$('title').text(),done)
     }
 })
-
-
-
 
 var c = new Crawler({
     maxConnections : 1,
@@ -55,13 +53,23 @@ var c = new Crawler({
             }
         });
         done();
-        cpage.queue(uriarr);
+        // cpage.queue(uriarr);
     }
 });
 
 
 
 
-c.queue({
-    url: 'http://www.biquke.com/bq/0/990/',
-})
+// let result = c.queue({
+//     url: 'http://www.biquke.com/bq/0/990/',
+// })
+
+
+
+makeDir('test').then(path => {
+    // console.log(path);
+    testPath = path;
+    c.queue({
+        url: 'http://www.biquke.com/bq/0/990/',
+    })
+});
