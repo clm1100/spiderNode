@@ -15,7 +15,7 @@ function writeFile(path, str, cb) {
 var testPath;
 var cpage = new Crawler({
     maxConnections:10,
-    rateLimit: 1000,
+    rateLimit: 100,
     callback:(error,res,done)=>{
         var $ = res.$;
         done()
