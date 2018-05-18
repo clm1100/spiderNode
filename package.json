@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "crawler": "^1.1.2"
+    "crawler": "^1.1.2",
+    "request": "^2.86.0",
+    "request-promise": "^4.2.2"
   }
 }

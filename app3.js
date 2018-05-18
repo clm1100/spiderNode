@@ -5,13 +5,6 @@ const makeDir = require('make-dir');
 const { exec } = require('child_process');
 var book = {} 
 var arr = [];
-function writeFile(path, str, cb) {
-    var writestream = fs.createWriteStream(path);
-    writestream.write(str);
-    writestream.on('close', function() {
-        cb && cb();
-    });
-}
 var testPath;
 var cpage = new Crawler({
     maxConnections:10,

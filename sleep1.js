@@ -1,6 +1,6 @@
 async function test() {
     console.log('Hello')
-    await sleep(60000*30)
+    await sleep(60000)
     console.log('world!')
   }
   

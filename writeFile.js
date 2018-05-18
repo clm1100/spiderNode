@@ -5,11 +5,12 @@ console.log(spath)
 console.log(str);
 var sleep = require('./sleep1.js');
 function writeFile(spath, str, cb) {
-    sleep();
-    var writestream = fs.createWriteStream(spath);
-    writestream.write(str);
-    writestream.on('close', function() {
-        cb && cb();
+    sleep().then(function () {
+        var writestream = fs.createWriteStream(spath);
+        writestream.write(str);
+        writestream.on('close', function () {
+            cb && cb();
+        });
     });
 }
 writeFile(spath,str,function(){
