@@ -85,3 +85,11 @@ console.log(rrr)
 var tyri = function (arg){
     return b(a(arg))
 }
+
+// let t6 = arrfn.reduce(function(fn){
+//     return function(){
+//         return 333
+//     }
+// })
+
+// console.log(t6())
