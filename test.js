@@ -124,27 +124,27 @@ function test(){
 // test()
 console.time('a')
 
-var q = async.queue(function (obj, cb) {
+// var q = async.queue(function (obj, cb) {
 
-  setTimeout(function () {　　
-    console.log(obj);
-    console.timeEnd('a')　　
-    cb();
-  }, obj.time)
-}, 1)
+//   setTimeout(function () {　　
+//     console.log(obj);
+//     console.timeEnd('a')　　
+//     cb();
+//   }, obj.time)
+// }, 1)
 
-q.push({name:222,time:2000},function(){
-  console.log("333")
-})
-q.push({name:222,time:2000},function(){
-  console.log("333")
-})
-q.push({name:222,time:2000},function(){
-  console.log("333")
-})
-q.push({name:222,time:2000},function(){
-  console.log("333")
-})
+// q.push({name:222,time:2000},function(){
+//   console.log("333")
+// })
+// q.push({name:222,time:2000},function(){
+//   console.log("333")
+// })
+// q.push({name:222,time:2000},function(){
+//   console.log("333")
+// })
+// q.push({name:222,time:2000},function(){
+//   console.log("333")
+// })
 
 // for (var i = 0; i < 100; i++) {　　
 //   console.log(1);　　　　
@@ -165,3 +165,21 @@ q.push({name:222,time:2000},function(){
 //     console.log(err);　　
 //   })
 // };
+
+var rq = require('request');
+const jschardet = require("jschardet");
+const iconv = require('iconv-lite');
+let url = "http://www.biquke.com/bq/0/990/";
+let url2 = 'http://www.biqugew.com/book/15/'
+var options = {
+  uri: url2,
+  encoding: null
+}
+rq(options,function(err,data){
+  let bianma = data.body
+  let result = jschardet.detect(bianma);
+  let str = iconv.decode(bianma, result.encoding)
+  console.log(result)
+  console.log(str)
+})
+
