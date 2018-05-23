@@ -18,7 +18,11 @@
     }
     li{
         list-style: none;
-        width: 300px
+        width: 300px;
+        padding: 4px;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
     a{
      text-decoration: none
@@ -33,7 +37,7 @@
     <ul>
         {{each arr }}
         <li>
-            <a href={{'/page/'+$value.url}}>{{$value.title}}</a>
+            <a title={{$value.title}} href={{'/page/'+$value.url}}>{{$value.title}}</a>
         </li>
         {{/each}}
     </ul>

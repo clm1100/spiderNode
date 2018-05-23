@@ -22,6 +22,10 @@ let options = {
     }
 };
 
+app.engine('html', require('express-art-template'));
+app.set('view engine',"html")
+app.set('views',path.join(__dirname,'views'))
+
 app.get('/',(req,res)=>{
     makeDir('test').then(path => {
         testPath = path;
@@ -39,22 +43,21 @@ app.get('/',(req,res)=>{
 
                 arr.push(obj);
             });
-            // return Promise.resolve(arr)
-            // res.json({arr:arr});
-            let str =  template(path.join(__dirname,'./views/index.html'),{href:href,latest:latest,arr:arr})
-            res.send(str);
+            // let str =  template(path.join(__dirname,'./views/index.html'),{href:href,latest:latest,arr:arr})
+            // res.send(str);
+            res.render('index',{href:href,latest:latest,arr:arr})
         })
     });
 })
 
 app.get('/page/:page',(req,res)=>{
-    console.log(req.params.page);
     let page = req.params.page
     let url = `http://www.biquke.com/bq/0/990/${page}`
     rqpage(url,function(err,data){
         // res.json(data)
-        let str = template(path.join(__dirname,'/views/template.html'),data);
-        res.send(str);
+        // let str = template(path.join(__dirname,'/views/template.html'),data);
+        // res.send(str);
+        res.render('template',data);
     })
 })
 
