@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        margin:20px auto 50px;
+        display: flex;
+        flex-flow: wrap;
+        justify-content: center;
+    }
+    li{
+        list-style: none;
+        width: 300px
+    }
+    a{
+     text-decoration: none
+    }
+    h1{text-align: center}
+    h2{text-align: center}
+    </style>
+</head>
+<body>
+    <h1>标题</h1>
+    <h2>最新章节 <a href={{"/page/"+href}}>{{latest}}</a></h2>
+    <ul>
+        {{each arr }}
+        <li>
+            <a href={{'/page/'+$value.url}}>{{$value.title}}</a>
+        </li>
+        {{/each}}
+    </ul>
+</body>
+</html>
