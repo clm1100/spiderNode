@@ -5,7 +5,6 @@ const express = require('express');
 const axios = require('axios');
 const app = express()
 
-let url = "http://www.biquke.com/bq/0/990/";
 
 // 配置模板
 app.engine('html', require('express-art-template'));
@@ -18,6 +17,7 @@ app.get('/', (req, res) => {
         let $ = cheerio.load(result.data);
         let domarr = $('#list dd a');
         let latest = $('#info p a[href]').eq(0).text();
+        let title = $('#info h1').text()
         let href = $('#info p a[href]').eq(0).attr('href');
         domarr.each((index, ele) => {
             let obj = {}
@@ -30,7 +30,8 @@ app.get('/', (req, res) => {
         res.render('index', {
             href: href,
             latest: latest,
-            arr: arr
+            arr: arr,
+            title
         })
     })
 })
