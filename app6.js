@@ -11,8 +11,11 @@ app.engine('html', require('express-art-template'));
 app.set('view engine', "html")
 app.set('views', path.join(__dirname, 'views'))
 
-app.get('/', (req, res) => {
-    axios.get("http://www.biquke.com/bq/0/990/").then(function (result) {
+app.get('/book/:num/:book', (req, res) => {
+    let num = req.params.num;
+    let book = req.params.book;
+    let url = `http://www.biquke.com/bq/${num}/${book}/`
+    axios.get(url).then(function (result) {
         let arr =  [];
         let $ = cheerio.load(result.data);
         let domarr = $('#list dd a');
@@ -36,9 +39,11 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/page/:page', (req, res) => {
+app.get('/page/:num/:book/:page', (req, res) => {
     let page = req.params.page
-    let url = `http://www.biquke.com/bq/0/990/${page}`
+    let book = req.params.book;
+    let num = req.params.num
+    let url = `http://www.biquke.com/bq/${num}/${book}/${page}`
     axios.get(url).then((result) => {
         let $ = cheerio.load(result.data);
         let content = $('#content').html();
