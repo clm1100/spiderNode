@@ -10,7 +10,7 @@
         .logo{height: 60px;border: 1px solid red}
         .nav{height: 40px;background-color:#88C6E5 }
         .gonggao{height: 700px;background-color: #FEF9EF}
-        .content{overflow: hidden;height: 980px;background-color: yellowgreen}
+        .content{overflow: hidden;min-height: 980px;background-color: yellowgreen}
         .content h2{
             margin: 0px;
             overflow: hidden;
@@ -35,6 +35,28 @@
             background: #E1ECED;}
         /* .right{float:right;} */
             .right{margin-left:710px;border: 3px solid #88C6E5}
+            li span {
+                float: left;
+            }
+            li .s1 {
+                width: 75px;
+            }
+            li .s2 {
+                width: 160px;
+            }
+            li .s3 {
+                width: 290px;
+            }
+            li .s4 {
+                color: #B3B3B3;
+                width: 90px;
+                text-align: right;
+            }
+            li .s5 {
+                color: #B3B3B3;
+                float: right;
+                text-align: right;
+            }
     </style>
     <title>Document</title>
 </head>
@@ -49,28 +71,19 @@
             <div class="left">
                 <h2>最近更新小说列表</h2>
                 <ul>
+                    {{each newscontent}}
                     <li>
-                        <span class="s1">[玄幻小说]</span>
+                        <span class="s1">{{$value.category}}</span>
                         <span class="s2">
-                            <a href="/bq/22/22617/">凌天战尊</a>
+                            <a href="/bq/22/22617/">{{$value.bookTilte}}</a>
                         </span>
                         <span class="s3">
-                            <a href="/bq/22/22617/5100297.html" target="_blank">第3012章 不好意思</a>
+                            <a href="/bq/22/22617/5100297.html" target="_blank">{{$value.pageTilte}}</a>
                         </span>
-                        <span class="s4">风轻扬</span>
-                        <span class="s5">05-25</span>
+                        <span class="s4">{{$value.author}}</span>
+                        <span class="s5">{{$value.time}}</span>
                     </li>
-                    <li>
-                        <span class="s1">[玄幻小说]</span>
-                        <span class="s2">
-                            <a href="/bq/22/22617/">凌天战尊</a>
-                        </span>
-                        <span class="s3">
-                            <a href="/bq/22/22617/5100297.html" target="_blank">第3012章 不好意思</a>
-                        </span>
-                        <span class="s4">风轻扬</span>
-                        <span class="s5">05-25</span>
-                    </li>
+                    {{ /each}}
                 </ul>
             </div>
             <div class="right">right</div>

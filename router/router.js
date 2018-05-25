@@ -59,31 +59,20 @@ router.get('/',function(req,res){
     let newscontent = [];
     axios.get('http://www.biquke.com').then((result)=>{
         let $ = cheerio.load(result.data);
-         $("#newscontent .l li").each(function(i,e){
+         $("#newscontent .l ul li").each(function(i,e){
+             console.log($(e).find('.s2').find('a').text())
             newscontent.push({
-                category:$(e).has('.s1').text(),
-                bookTilte:$(e).has('.s2').find('a').text(),
-                bookHref:$(e).has('.s2').find('a').attr("href"),
+                category:$(e).find('span.s1').text(),
+                bookTilte:$(e).find('.s2').find('a').text(),
+                bookHref:$(e).find('.s2').find('a').attr("href"),
                 pageTilte:$(e).find('.s3').find('a').text(),
                 pageHref:$(e).find('.s3').find('a').attr("href"),
                 author:$(e).find('.s4').text(),
                 time:$(e).find('.s5').text()
             })
         })
-        res.json({newscontent})      
-        // let newscontent = $("#newscontent .l li").map(function(i,e){
-        //     return {
-        //         a:"2222"
-        //         // category:$(e).has('.s1').text(),
-        //         // bookTilte:$(e).has('.s2').find('a').text(),
-        //         // bookHref:$(e).has('.s2').find('a').attr("href"),
-        //         // pageTilte:$(e).find('.s3').find('a').text(),
-        //         // pageHref:$(e).find('.s3').find('a').attr("href"),
-        //         // author:$(e).find('.s4').text(),
-        //         // time:$(e).find('.s5').text()
-        //     }
-        // })
-
+        // res.json({newscontent});
+        res.render('index',{newscontent})    
     })
 })
 
