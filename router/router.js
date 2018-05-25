@@ -56,17 +56,16 @@ router.get('/page/:num/:book/:page', (req, res) => {
 })
 
 router.get('/',function(req,res){
-    let newscontent = [];
     axios.get('http://www.biquke.com').then((result)=>{
         let $ = cheerio.load(result.data);
+        let newscontent = [];
          $("#newscontent .l ul li").each(function(i,e){
-             console.log($(e).find('.s2').find('a').text())
             newscontent.push({
                 category:$(e).find('span.s1').text(),
                 bookTilte:$(e).find('.s2').find('a').text(),
-                bookHref:$(e).find('.s2').find('a').attr("href"),
+                bookHref:"/book/"+$(e).find('.s2').find('a').attr("href").split("/").splice(2).join("/"),
                 pageTilte:$(e).find('.s3').find('a').text(),
-                pageHref:$(e).find('.s3').find('a').attr("href"),
+                pageHref:"/page/"+$(e).find('.s3').find('a').attr("href").split("/").splice(2).join("/"),
                 author:$(e).find('.s4').text(),
                 time:$(e).find('.s5').text()
             })
