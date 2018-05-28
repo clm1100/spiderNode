@@ -69,7 +69,7 @@ router.get('/',function(req,res){
                 author:$(e).find('.s4').text(),
                 time:$(e).find('.s5').text()
             })
-        })
+        });
         // res.json({newscontent});
         res.render('index',{newscontent})    
     })

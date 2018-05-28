@@ -14,5 +14,5 @@ app.use(router);
 
 
 app.listen(3001, () => {
-    console.log("http://127.0.0.1:3001/0/990")
+    console.log("http://127.0.0.1:3001")
 })
